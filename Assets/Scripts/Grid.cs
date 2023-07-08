@@ -8,6 +8,8 @@ public class Grid : MonoBehaviour
     [SerializeField] private LayerMask unwalkableArea;
     [SerializeField] private Vector2 gridWorldSize;
     [SerializeField] private float nodeRadius;
+    public List<Node> path;
+
     private Node[,] _grid;
     private float _nodeDiameter;
     private int _gridXCount;
@@ -51,7 +53,7 @@ public class Grid : MonoBehaviour
                 }
 
                 int checkX = node.gridX + x;
-                int checkY = node.gridX + x;
+                int checkY = node.gridX + y;
                 if (checkX>= 0 && checkX<_gridXCount && checkY>=0 && checkY <_gridYCount)
                 {
                     neighbours.Add(_grid[checkX,checkY]);
@@ -66,7 +68,6 @@ public class Grid : MonoBehaviour
         float percentX = (worldPosition.x + gridWorldSize.x / 2) / gridWorldSize.x;
         float percentY = (worldPosition.z + gridWorldSize.y / 2) / gridWorldSize.y;
         percentX = Mathf.Clamp01(percentX);
-        Debug.Log(percentX);
         percentY= Mathf.Clamp01(percentY);
         int x = Mathf.RoundToInt((_gridXCount - 1) * percentX);
         int y = Mathf.RoundToInt((_gridYCount- 1) *percentY);
@@ -88,6 +89,11 @@ public class Grid : MonoBehaviour
                 {
                     Gizmos.color=Color.cyan;
                     
+                }
+
+                if (path.Contains(node))
+                {
+                    Gizmos.color=Color.black;
                 }
                 Gizmos.DrawCube(node.worldPosition,Vector3.one*(_nodeDiameter-.1f));
             }

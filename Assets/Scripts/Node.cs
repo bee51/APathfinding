@@ -1,14 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class Node
 {
     public bool walkable;
     public Vector3 worldPosition;
     public int gridX;
     public int gridY;
-    
+    public Node parent;
     
     public int hCost;
     public int gCost;
@@ -21,6 +23,6 @@ public class Node
         this.gridY = gridY;
     }
 
-    public int fCost => hCost + gCost;
+    public int FCost => hCost + gCost;
 
 }
