@@ -24,6 +24,8 @@ public class Grid : MonoBehaviour
         CreateGrid();
     }
 
+    public int MaxSize => _gridXCount * _gridYCount;
+
     public void CreateGrid()
     {
         _grid = new Node[_gridXCount,_gridYCount];
@@ -47,13 +49,11 @@ public class Grid : MonoBehaviour
         {
             for (int y = -1; y <= 1; y++)
             {
-                if (x==0&& y==0)
-                {
+                if (x == 0 && y == 0)
                     continue;
-                }
 
                 int checkX = node.gridX + x;
-                int checkY = node.gridX + y;
+                int checkY = node.gridY + y;
                 if (checkX>= 0 && checkX<_gridXCount && checkY>=0 && checkY <_gridYCount)
                 {
                     neighbours.Add(_grid[checkX,checkY]);
@@ -63,6 +63,7 @@ public class Grid : MonoBehaviour
 
         return neighbours;
     }
+ 
     public Node GetNodeFromWorldPosition(Vector3 worldPosition)
     {
         float percentX = (worldPosition.x + gridWorldSize.x / 2) / gridWorldSize.x;
@@ -99,5 +100,4 @@ public class Grid : MonoBehaviour
             }
         }
     }
-
 }
