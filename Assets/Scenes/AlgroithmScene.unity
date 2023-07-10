@@ -347,6 +347,7 @@ GameObject:
   - component: {fileID: 504390762}
   - component: {fileID: 504390763}
   - component: {fileID: 504390764}
+  - component: {fileID: 504390765}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -386,9 +387,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   gridWorldSize: {x: 30, y: 30}
-  nodeRadius: 0.5
-  path: []
-  onlyDisplayPathGizmos: 0
+  nodeRadius: 0.2
 --- !u!114 &504390764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -401,8 +400,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1266ec7e74994648b24a7181e723ccd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seeker: {fileID: 2057319581}
-  target: {fileID: 1438184326}
+--- !u!114 &504390765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504390761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93510a5d7d4fd184e994c42c5acc6132, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -687,7 +696,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1438184322}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.21, y: 0.6751213, z: -1.8699999}
+  m_LocalPosition: {x: -6.85, y: 0.6751213, z: 4.39}
   m_LocalScale: {x: 0.62877, y: 0.62877, z: 0.62877}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -811,6 +820,7 @@ GameObject:
   - component: {fileID: 2057319580}
   - component: {fileID: 2057319579}
   - component: {fileID: 2057319578}
+  - component: {fileID: 2057319582}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -904,3 +914,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2057319582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057319577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 176eff6d998ddfd46897e39a3de02383, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1438184326}
+  speed: 0.1
+  targetIndex: 0
