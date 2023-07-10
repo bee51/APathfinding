@@ -22,39 +22,35 @@ public class Pathfinding : MonoBehaviour
     {
         Node startNode = _grid.GetNodeFromWorldPosition(startPos);
         Node targetNode = _grid.GetNodeFromWorldPosition(targetPos);
+
         Heap<Node> openSet = new Heap<Node>(_grid.MaxSize);
         HashSet<Node> closedSet = new HashSet<Node>();
         openSet.Add(startNode);
 
-        while (openSet.Count > 0)
-        {
+        while (openSet.Count > 0) {
             Node currentNode = openSet.RemoveFirst();
-            
             closedSet.Add(currentNode);
 
-            if (currentNode == targetNode)
-            {
-                RetracePath(startNode, targetNode);
-
+            if (currentNode == targetNode) {
+                RetracePath(startNode,targetNode);
                 return;
             }
 
-            foreach (var neighbour in _grid.GetNeighbours(currentNode))
-            {
-                if (!neighbour.walkable || closedSet.Contains(neighbour))
-                {
+            foreach (Node neighbour in _grid.GetNeighbours(currentNode)) {
+                if (!neighbour.walkable || closedSet.Contains(neighbour)) {
                     continue;
                 }
 
                 int newMovementCostToNeighbour = currentNode.gCost + GetNodeDistance(currentNode, neighbour);
-                if (newMovementCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
-                {
+                if (newMovementCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour)) {
                     neighbour.gCost = newMovementCostToNeighbour;
                     neighbour.hCost = GetNodeDistance(neighbour, targetNode);
                     neighbour.parent = currentNode;
+
                     if (!openSet.Contains(neighbour))
-                    {
                         openSet.Add(neighbour);
+                    else {
+                        //openSet.UpdateItem(neighbour);
                     }
                 }
             }
